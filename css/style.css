@@ -1,13 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
+@font-face{
+  font-family: Brands;
+  src: url('../fonts/brands.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/brands.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/brands.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/brands.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/brands.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
 :root {
   --background-color: #f0f0f0;
   --first-color: #0E2431;
   --second-color: #0E2431;
 
-  --body-font: 'Noto Sans JP', sans-serif;
+  --body-font: 'Quicksand', sans-serif;
   --big-font-size: 6rem;
-  --normal-font-size: 1rem;
+  --normal-font-size: 2rem;
 
   --mb-1: 0.5rem;
   --mb-2: 1rem;
@@ -24,6 +34,9 @@
   --face-x: 60vw;
   --face-y: 20vh;
 
+  --stork-height: min(600px, 20vh);
+  --stork-width: calc((15/10)*var(--stork-height));
+
   --king-height: min(600px, 60vh);
   --king-width: calc((452/402)*var(--king-height));
   
@@ -39,7 +52,7 @@
   --book-width: min(800px, 80vw);
   --book-height: calc((402/452)*var(--book-width));
 
-  --pc-width: min(700px, 80vw);
+  --pc-width: min(700px, 50vw);
   --pc-height: calc((402/452)*var(--pc-width));
 }
 * {
@@ -65,7 +78,11 @@ html, body{
   padding: 0;
   overflow-x: hidden;
 }
-
+.text{
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
 section{
   position: relative;
   scroll-margin-top:var(--header-height);
@@ -73,10 +90,13 @@ section{
 h1 {
   margin: 0;
   font-size: var(--big-font-size);
-  letter-spacing: .1em;
+  /*letter-spacing: .1em;*/
 }
 h1,h2,p{
   margin: 0;
+}
+p{
+  font-size: var(--normal-font-size);
 }
 li{
   list-style: none;
@@ -154,6 +174,7 @@ a{
 .home{
   width: 100%;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 .name-wrapper{
   position: absolute;
@@ -327,6 +348,7 @@ a{
 .scene {
   position: relative;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   pointer-events:none;
   touch-action: auto;
@@ -356,6 +378,34 @@ a{
   max-width: 1200px;
   transform: translate(-50%, -50%);
 }
+#viewer-stork{
+  position: absolute;
+  top: 10%;
+  width: var(--stork-width);
+  height: var(--stork-height);
+  background-image: url("../img/stork.svg");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto var(--stork-height) !important;
+  -webkit-background-size: var(--stork-width) auto;
+  -moz-background-size: var(--stork-width) auto;
+  -o-background-size: var(--stork-width) auto;
+  transform: translate(-110%, 0%);
+}
+#little-lluis{
+  position: absolute;
+  top: 18%;
+  width: auto;
+  height: calc(var(--stork-height)/2);
+  transform: translate(-100%, 0%);
+}
+#scene-bcn-text{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%,0%);
+  text-align: center;
+}
 
 .tml-ball {
   opacity: 0;
@@ -380,6 +430,7 @@ a{
   height: 90%;
   width: auto;
 }
+
 #chess-text{
   position: absolute;
   top: 50%;
@@ -466,16 +517,98 @@ a{
   transform: translate(-50%,-40%);
 }
 /* ===== SKILLS =====*/
-.fab{
-  font-size: 200px;
-}
-.icons{
 
+.skill{
+  width: 50%;
+  margin-bottom: 100px;
+  justify-content: right;
+}
+.skill h2{
+  text-align: center;
+}
+.icon-wrapper{
+ margin: 30px 50px;
+ display: flex;
+ align-items: center;
+ flex-wrap: wrap;
+ justify-content: center;
+}
+.icon{
+  margin: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.082);
+  border-radius: 10%;
+  text-align: center;
+}
+.icon p{
+  padding-bottom: 10px;
+}
+
+.icon>i{
+  width: auto;
+  height: auto;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: Brands;
+  font-size: 200px;
+  padding-bottom: 20px;
+  color: transparent;
+  transition: background-position .5s ease;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% 200%;
+}
+
+
+#cplusplus{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #659ad2 50%);
+}
+#java{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #ed2025 50%);
+}
+#html5{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #e34f26 50%);
+}
+#css3{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #0170ba 50%);
+}
+#js{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #d4a830 50%);
+}
+#python{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #ccaa30 50%);
+}
+#react{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #61dafb 50%);
+}
+#kotlin{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #7e52ff 50%);
+}
+#git{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #f05033 50%);
+}
+#bash{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #601348 50%);
+}
+#mongo{
+  background-image: linear-gradient(135deg, var(--first-color) 50%, #58aa50 50%);
+}
+
+#pc-scene{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
 }
 #viewer-pc{
-  position: absolute;
-  top: 50%;
-  left: 70%;
+  position: relative;
+  top: 15vh;
   width: var(--pc-width);
   height: var(--pc-height);
   background-image: url("../img/pc.png");
@@ -485,7 +618,6 @@ a{
   -webkit-background-size: var(--pc-width) auto;
   -moz-background-size: var(--pc-width) auto;
   -o-background-size: var(--pc-width) auto;
-  transform: translate(-50%,-40%);
 }
 
 @media only screen and (max-width: 768px) {
@@ -573,6 +705,9 @@ a{
     top: calc(var(--racquet-width)/2);
     left: calc(-1*var(--racquet-width)/5);
   }
+  .icon i{
+    font-size: 100px;
+  }
 }
 
 @keyframes spin-right {
@@ -638,6 +773,7 @@ a{
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+  
 }
 .loader-wrapper {
     display: none;

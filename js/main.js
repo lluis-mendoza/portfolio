@@ -3,162 +3,17 @@ gsap.registerPlugin(ScrollTrigger);
 var ww = document.documentElement.clientWidth;
 var wh = document.documentElement.clientHeight;
 
-// ===== CURSOR =====
-/*
-let lastX = 0;
-let lastY = 0;
-let clientX = -100;
-let clientY = -100;
-let isStuck = false;
-let showCursor = false;
-let group, stuckX, stuckY, fillOuterCursor;
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-document.addEventListener("mousemove", e => {
-    clientX = e.clientX;
-    clientY = e.clientY;
+window.addEventListener('resize', function () { 
+  if (document.documentElement.clientWidth != ww){
+    window.location.reload(); 
+  }
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `$vh}px`);
 });
-const initHovers = () => {
 
-    // find the center of the link element and set stuckX and stuckY
-    // these are needed to set the position of the noisy circle
-    const handleMouseEnter = e => {
-      const navItem = e.currentTarget;
-      const navItemBox = navItem.getBoundingClientRect();
-      stuckX = Math.round(navItemBox.left + navItemBox.width / 2);
-      stuckY = Math.round(navItemBox.top + navItemBox.height / 2);
-      isStuck = true;
-    };
-    
-    // reset isStuck on mouseLeave
-    const handleMouseLeave = () => {
-      isStuck = false;
-    };
-    
-    // add event listeners to all items
-    const linkItems = document.querySelectorAll(".nav-link");
-    linkItems.forEach(item => {
-      item.addEventListener("mouseenter", handleMouseEnter);
-      item.addEventListener("mouseleave", handleMouseLeave);
-    });
-  };
-  
-initHovers();
-const initCanvas = () => {
-  const canvas = document.querySelector(".cursor");
-  const shapeBounds = {
-    width: 75,
-    height: 75
-  };
-  paper.setup(canvas);
-  const strokeColor = "rgba(255, 0, 0, 0.7)";
-  const strokeWidth = 3;
-  const segments = 8;
-  const radius = 30;
-  
-  // we'll need these later for the noisy circle
-  const noiseScale = 150; // speed
-  const noiseRange = 4; // range of distortion
-  let isNoisy = false; // state
-  
-  // the base shape for the noisy circle
-  const polygon = new paper.Path.RegularPolygon(
-    new paper.Point(0, 0),
-    segments,
-    radius
-  );
-  polygon.strokeColor = strokeColor;
-  polygon.strokeWidth = strokeWidth;
-  polygon.smooth();
-  group = new paper.Group([polygon]);
-  group.applyMatrix = false;
-  
-  const noiseObjects = polygon.segments.map(() => new SimplexNoise());
-  let bigCoordinates = [];
-  
-  // function for linear interpolation of values
-  const lerp = (a, b, n) => {
-    return (1 - n) * a + n * b;
-  };
-  
-  // function to map a value from one range to another range
-  const map = (value, in_min, in_max, out_min, out_max) => {
-    return (
-      ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-    );
-  };
-  
-  // the draw loop of Paper.js 
-  // (60fps with requestAnimationFrame under the hood)
-  paper.view.onFrame = event => {
-    // using linear interpolation, the circle will move 0.2 (20%)
-    // of the distance between its current position and the mouse
-    // coordinates per Frame
-    if (!isStuck) {
-      // move circle around normally
-      lastX = lerp(lastX, clientX, 0.2);
-      lastY = lerp(lastY, clientY, 0.2);
-      group.position = new paper.Point(lastX, lastY);
-    } else if (isStuck) {
-      // fixed position on a nav item
-      lastX = lerp(lastX, stuckX, 0.2);
-      lastY = lerp(lastY, stuckY, 0.2);
-      group.position = new paper.Point(lastX, lastY);
-    }
-    
-    if (isStuck && polygon.bounds.width < shapeBounds.width) { 
-      // scale up the shape 
-      polygon.scale(1.08);
-    } else if (!isStuck && polygon.bounds.width > 30) {
-      // remove noise
-      if (isNoisy) {
-        polygon.segments.forEach((segment, i) => {
-          segment.point.set(bigCoordinates[i][0], bigCoordinates[i][1]);
-        });
-        isNoisy = false;
-        bigCoordinates = [];
-      }
-      // scale down the shape
-      const scaleDown = 0.92;
-      polygon.scale(scaleDown);
-    }
-    
-    // while stuck and big, apply simplex noise
-    if (isStuck && polygon.bounds.width >= shapeBounds.width) {
-      isNoisy = true;
-      // first get coordinates of large circle
-      if (bigCoordinates.length === 0) {
-        polygon.segments.forEach((segment, i) => {
-          bigCoordinates[i] = [segment.point.x, segment.point.y];
-        });
-      }
-      
-      // loop over all points of the polygon
-      polygon.segments.forEach((segment, i) => {
-        
-        // get new noise value
-        // we divide event.count by noiseScale to get a very smooth value
-        const noiseX = noiseObjects[i].noise2D(event.count / noiseScale, 0);
-        const noiseY = noiseObjects[i].noise2D(event.count / noiseScale, 1);
-        
-        // map the noise value to our defined range
-        const distortionX = map(noiseX, -1, 1, -noiseRange, noiseRange);
-        const distortionY = map(noiseY, -1, 1, -noiseRange, noiseRange);
-        
-        // apply distortion to coordinates
-        const newX = bigCoordinates[i][0] + distortionX;
-        const newY = bigCoordinates[i][1] + distortionY;
-        
-        // set new (noisy) coodrindate of point
-        segment.point.set(newX, newY);
-      });
-      
-    }
-    polygon.smooth();
-  };
-}
-
-initCanvas();
-*/
 // ===== NAV BAR =====
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
@@ -179,6 +34,7 @@ function closeMenu() {
 }
 
 // ===== HOME =====
+
 var home = document.getElementById('home-parallax');
 var home_parallax = new Parallax(home);
 
@@ -198,6 +54,7 @@ gsap.to(".scroll", {
     }
 });
 
+// ===== ABOUT =====
 
 var barcelona = document.querySelector('#barcelona-path');
 var barcelonaLength = barcelona.getTotalLength();
@@ -206,51 +63,58 @@ barcelona.style.strokeDashoffset = barcelonaLength;
 barcelona.getBoundingClientRect();
 
 gsap.timeline({
+    defaults:{
+        duration: 1,
+    },
     scrollTrigger: {
         trigger: "#barcelona",
         start: "top top",
-        end: "+=" + (wh*3),
+        end: "+=" + (wh*5),
         pin: true,
         scrub: 1,
-        snap:1,
     }})
     .to("#skyline1",{y: "20%"}, 0)
     .to("#skyline2",{y: "15%"}, 0)
     .to("#skyline3",{y: "10%"}, 0)
     .to("#skyline4",{y: "5%"}, 0)
     .to("#barcelona-path",{ease: Power4.easeOut,strokeDashoffset: 1}, 0)
-
-var line = document.querySelector('#tml-line');
-var lineLength = line.getTotalLength();
-line.style.strokeDasharray = lineLength + ' ' + lineLength;
-line.style.strokeDashoffset = lineLength;
-line.getBoundingClientRect();
-
+    .to("#viewer-stork",{duration: 0.3, repeat: 3, ease: "steps(" + 3 + ")", backgroundPosition: (-document.getElementById('viewer-stork').offsetWidth*3) + "px 0"}, 0)
+    .to("#viewer-stork",{x: "100vw"}, 0)
+    .to("#little-lluis",{ duration:0.5, x: "55vw"}, 0)
+    .to("#little-lluis",{duration: 0.45, y: "40vh"}, 0.2)
+    .to("#little-lluis",{duration: 0.01, opacity: 0}, 0.6)
+    var line = document.querySelector('#tml-line');
+    var lineLength = line.getTotalLength();
+    line.style.strokeDasharray = lineLength + ' ' + lineLength;
+    line.style.strokeDashoffset = lineLength;
+    line.getBoundingClientRect();
+    
 var tml = gsap.timeline({
     defaults: {
-      duration: 0.05, 
-      autoAlpha: 1, 
-      scale: 1.5, 
-      transformOrigin: 'center', 
-      ease: "elastic(2.5, 1)"
+        duration: 0.05, 
+        autoAlpha: 1, 
+        scale: 1.5, 
+        transformOrigin: 'center', 
+        ease: "elastic(2.5, 1)"
     }})
-  .to("#tml-ball1, #tml-text1", {}, 0.15) 
-  .to("#tml-ball2, #tml-text2", {}, 0.22)
-  .to("#tml-ball3, #tml-text3", {}, 0.33)
-  .to("#tml-ball4, #tml-text4", {}, 0.47)
+    .to("#tml-ball1, #tml-text1", {}, 0.15) 
+    .to("#tml-ball2, #tml-text2", {}, 0.22)
+    .to("#tml-ball3, #tml-text3", {}, 0.33)
+    .to("#tml-ball4, #tml-text4", {}, 0.47)
 gsap.set("#tml-dot", {xPercent: -50, yPercent: -50})
 gsap.timeline({defaults: {duration: 1},
     scrollTrigger: {
-      trigger: "#studies",
-      scrub: 1,
-      pin:true,
-      end: "+=" + (wh*4),
-      start: "top top",
+        trigger: "#studies",
+        scrub: 1,
+        pin:true,
+        end: "+=" + (wh*4),
+        start: "top top",
     }})
-  .to("#tml-dot", {duration: 0.01, autoAlpha: 1}, 0)
-  .to("#tml-line", {strokeDashoffset: 1}, 0)
-  .to("#tml-dot", {motionPath: {path: "#tml-line", alignOrigin: [0.5, 0.5]}}, 0)
-  .add(tml, 0);
+    .to("#tml-dot", {duration: 0.01, autoAlpha: 1}, 0)
+    .to("#tml-line", {strokeDashoffset: 1}, 0)
+    .to("#tml-dot", {motionPath: {path: "#tml-line", alignOrigin: [0.5, 0.5]}}, 0)
+    .from("#logo-fib", {ease: "elastic.out(1, 0.3)", height: 0, width: 0})
+    .add(tml, 0);
 
 var frame_count  = 44,
     frame_count2 = 9;
@@ -314,8 +178,51 @@ gsap.timeline({
     scrollTrigger: {
         trigger: "#pc-scene",
         start: "top top",
-        end: "+=" + (frame_count4 * ww/20),
+        end: "bottom center",
         pin: true,
         scrub: 1,
     }})
     .to("#viewer-pc",{ease: "steps(" + frame_count4 + ")", backgroundPosition: "0 "+ (-pc_h*frame_count4)}, 0)
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: "#dev-soft",
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 1,
+    }})
+    .to("#cplusplus",{duration: 0.2, backgroundPosition: "bottom right"},0.2)
+    .to("#java",{duration: 0.2, backgroundPosition: "bottom right"})
+    .to("#python",{duration: 0.2, backgroundPosition: "bottom right"})
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: "#dev-web",
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 1,
+    }})
+    .to("#html5",{duration: 0.2, backgroundPosition: "bottom right"},0.2)
+    .to("#css3",{duration: 0.2, backgroundPosition: "bottom right"})
+    .to("#js",{duration: 0.2, backgroundPosition: "bottom right"})
+    .to("#react",{duration: 0.2, backgroundPosition: "bottom right"})
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: "#dev-mobile",
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 1,
+    }})
+    .to("#kotlin",{duration: 0.2, backgroundPosition: "bottom right"},0.2)
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: "#dev-tools",
+        start: "top center",
+        end: "bottom bottom",
+        scrub: 1,
+    }})
+    .to("#git",{duration: 0.2, backgroundPosition: "bottom right"},0.2)
+    .to("#bash",{duration: 0.2, backgroundPosition: "bottom right"})
+    .to("#mongo",{duration: 0.2, backgroundPosition: "bottom right"})
