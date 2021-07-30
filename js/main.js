@@ -15,6 +15,7 @@ window.addEventListener('resize', function () {
 });
 
 // ===== NAV BAR =====
+
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
 
@@ -54,40 +55,59 @@ gsap.to(".scroll", {
     }
 });
 
-// ===== ABOUT =====
+var lineMac = document.querySelector('#hello-macintosh');
+var lineMacLength = lineMac.getTotalLength();
+lineMac.style.strokeDasharray = lineMacLength + ' ' + lineMacLength;
+lineMac.style.strokeDashoffset = lineMacLength;
+lineMac.getBoundingClientRect();
 
-var barcelona = document.querySelector('#barcelona-path');
-var barcelonaLength = barcelona.getTotalLength();
-barcelona.style.strokeDasharray = barcelonaLength + ' ' + barcelonaLength;
-barcelona.style.strokeDashoffset = barcelonaLength;
-barcelona.getBoundingClientRect();
+gsap.timeline({defaults: {duration: 1},
+    defaults:{
+        ease: "none"
+    },
+    scrollTrigger: {
+        trigger: "#hello-scene",
+        scrub: 1,
+        end: "+=" + (wh*2),
+        pin: true,
+        start: "top top",
+    }})
+    .from("#macintosh_1", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
+    .from("#macintosh_2", {opacity: 0, scaleY: 0.5, transformOrigin: "50% 0%"})
+    .from("#macintosh_3", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
+    .from("#macintosh_4", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
+    .from("#macintosh_5", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
+    .from("#macintosh_6", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
+    .from("#macintosh_7", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
+    .to("#hello-macintosh", {strokeDashoffset: 1})
+    .from("#hello-scene-txt", {opacity: 0, y: "+=10px"})
+    .to({}, {duration: 2})
 
 gsap.timeline({
     defaults:{
-        duration: 1,
+        ease: Power4.easeInOut
     },
     scrollTrigger: {
-        trigger: "#barcelona",
-        start: "top top",
-        end: "+=" + (wh*5),
+        trigger: "#barcelona-scene",
+        start: "center center",
+        end: "+=" + (wh*2),
         pin: true,
-        scrub: 1,
+        scrub: 1
     }})
-    .to("#skyline1",{y: "20%"}, 0)
-    .to("#skyline2",{y: "15%"}, 0)
-    .to("#skyline3",{y: "10%"}, 0)
-    .to("#skyline4",{y: "5%"}, 0)
-    .to("#barcelona-path",{ease: Power4.easeOut,strokeDashoffset: 1}, 0)
-    .to("#viewer-stork",{duration: 0.3, repeat: 3, ease: "steps(" + 3 + ")", backgroundPosition: (-document.getElementById('viewer-stork').offsetWidth*3) + "px 0"}, 0)
-    .to("#viewer-stork",{x: "100vw"}, 0)
-    .to("#little-lluis",{ duration:0.5, x: "55vw"}, 0)
-    .to("#little-lluis",{duration: 0.45, y: "40vh"}, 0.2)
-    .to("#little-lluis",{duration: 0.01, opacity: 0}, 0.6)
-    var line = document.querySelector('#tml-line');
-    var lineLength = line.getTotalLength();
-    line.style.strokeDasharray = lineLength + ' ' + lineLength;
-    line.style.strokeDashoffset = lineLength;
-    line.getBoundingClientRect();
+    .from("#skyline-rect",{duration: 0.2,scaleX: 0.054,transformOrigin: "0% 50%"}, 0)
+    .to("#skyline1",{duration: 0.1, y: "0"}, 0.15)
+    .to("#skyline2",{duration: 0.2, y: "0"}, 0.15)
+    .to("#skyline3",{duration: 0.15, y: "0"}, 0.3)
+    .to("#skyline4",{duration: 0.2, y: "0"}, 0.35)
+    .from("#barcelona-scene-txt", {opacity: 0, y: "+=10px"})
+    .to({}, {duration: 2})
+
+    
+var line = document.querySelector('#tml-line');
+var lineLength = line.getTotalLength();
+line.style.strokeDasharray = lineLength + ' ' + lineLength;
+line.style.strokeDashoffset = lineLength;
+line.getBoundingClientRect();
     
 var tml = gsap.timeline({
     defaults: {
@@ -97,92 +117,137 @@ var tml = gsap.timeline({
         transformOrigin: 'center', 
         ease: "elastic(2.5, 1)"
     }})
-    .to("#tml-ball1, #tml-text1", {}, 0.15) 
-    .to("#tml-ball2, #tml-text2", {}, 0.22)
-    .to("#tml-ball3, #tml-text3", {}, 0.33)
-    .to("#tml-ball4, #tml-text4", {}, 0.47)
-gsap.set("#tml-dot", {xPercent: -50, yPercent: -50})
+    .to("#tml-ball1", {}, 0.1) 
+    .to("#tml-ball2", {}, 0.2)
+    .to("#tml-ball3", {}, 0.3)
+    .to("#tml-ball4", {}, 0.4)
+    .to("#tml-ball5", {}, 0.5)
+//gsap.set("#tml-dot", {xPercent: -100, yPercent: -50})
+
 gsap.timeline({defaults: {duration: 1},
+    defaults:{
+        ease: "none"
+    },
     scrollTrigger: {
         trigger: "#studies",
         scrub: 1,
-        pin:true,
-        end: "+=" + (wh*4),
-        start: "top top",
+        end: "bottom center",
+        start: "top center",
     }})
-    .to("#tml-dot", {duration: 0.01, autoAlpha: 1}, 0)
     .to("#tml-line", {strokeDashoffset: 1}, 0)
-    .to("#tml-dot", {motionPath: {path: "#tml-line", alignOrigin: [0.5, 0.5]}}, 0)
-    .from("#logo-fib", {ease: "elastic.out(1, 0.3)", height: 0, width: 0})
+    .to("#tml-dot", {motionPath: {path: "#tml-line", align:"#tml-line",
+    alignOrigin: [0.5, 0.5]}}, 0)
+    //.from("#logo-fib", {ease: "elastic.out(1, 0.3)", height: 0, width: 0})
     .add(tml, 0);
 
-var frame_count  = 44,
-    frame_count2 = 9;
-    frame_count3 = 67;
-    frame_count4 = 29;
-    
-    king_h = document.getElementById('viewer-king').offsetHeight;
-    king_w = document.getElementById('viewer-king').offsetWidth;
-    horse_h = document.getElementById('viewer-horse').offsetHeight;
-    horse_w = document.getElementById('viewer-horse').offsetWidth;
-    ball_h = document.getElementById('viewer-ball').offsetHeight;
-    ball_w = document.getElementById('viewer-ball').offsetWidth;
-    racquet_h = document.getElementById('viewer-racquet').offsetHeight;
-    racquet_w = document.getElementById('viewer-racquet').offsetWidth;
-    book_h = document.getElementById('viewer-book').offsetHeight;
-    book_w = document.getElementById('viewer-book').offsetWidth;
-    pc_h = document.getElementById('viewer-pc').offsetHeight;
-    pc_w = document.getElementById('viewer-pc').offsetWidth;
+var horse_animation = gsap.timeline({
+    defaults:{
+        scale: 0,
+        duration: 0.2
+    }})
+    .from("#horse_2", {})
+    .from("#horse_3", {transformOrigin: "100% 0%"})
+    .from("#horse_4", {transformOrigin: "100% 100%"})
+    .from("#horse_5", {transformOrigin: "0% 100%"})
+    .from("#horse_6", {transformOrigin: "50% 0%"})
+    .from("#horse_7", {transformOrigin: "50% 0%"})
+    .from("#horse_8", {transformOrigin: "100% 100%"})
+    .from("#horse_9", {transformOrigin: "0% 50%"})
+    .from("#horse_10", {transformOrigin: "50% 100%"})
+    .from("#horse_11", {transformOrigin: "100% 100%"})
+    .from("#horse_12", {transformOrigin: "100% 50%"})
+    .from("#horse_13", {transformOrigin: "50% 100%"})
+    .from("#horse_14", {transformOrigin: "100% 50%"})
+    .from("#horse_15", {transformOrigin: "100% 50%"})
+    .from("#horse_16", {transformOrigin: "0% 0%"})
+    .from("#horse_17", {transformOrigin: "100% 50%"})
+    .from("#horse_18", {transformOrigin: "100% 50%"})
+    .from("#horse_19", {transformOrigin: "100% 50%"})
+    .from("#horse_20", {transformOrigin: "0% 100%"})
+    .from("#horse_21", {transformOrigin: "0% 50%"})
+    .from("#horse_22", {transformOrigin: "0% 50%"})
+    .from("#horse_23", {transformOrigin: "0% 50%"})
+    .from("#horse_24", {transformOrigin: "0% 0%"})
+    .from("#horse_25", {transformOrigin: "0% 0%"})
+    .from("#horse_26", {transformOrigin: "0% 0%"})
+    .from("#horse_27", {transformOrigin: "0% 50%"})
 
 gsap.timeline({
     scrollTrigger: {
         trigger: "#chess-scene",
-        start: "top top",
-        end: "+=" + (frame_count * ww/20),
-        pin: true,
         scrub: 1,
+        pin:true,
+        end: "+=" + (wh*2),
+        start: "top top",
     }})
-    .to("#viewer-king",{ease: "steps(" + frame_count + ")", backgroundPosition: "0 "+ (-king_h*frame_count)}, 0)
-    .to("#viewer-king",{x: (ww-king_w),y: "20vh"}, 0)
-    .from("#chess-text",{opacity:0, y: "-5vw"}, 0)
-    .to("#viewer-horse",{x: "0",y: "-40%"}, 0)
-    .to("#viewer-horse",{ease: "steps(" + frame_count + ")", backgroundPosition: "0 "+ (-horse_h*frame_count)}, 0)
-    
+    .add(horse_animation, 0)
+    .to({}, {duration: 2})
 
+var paddel_ball = gsap.timeline({
+
+    })
+    .to("#paddel-ball", {transformOrigin: "50% 50%",y: "+=40vh",ease: Power1.easeInOut})
+    .to("#paddel-ball", {transformOrigin: "50% 100%",scaleX: 1.3,scaleY: 0.6,ease: Power1.easeInOut})
+    .to("#paddel-ball", {transformOrigin: "50% 50%",scaleX: 1,scaleY: 1,y: "-=35vh",ease: Power1.easeInOut})
+    .to("#paddel-ball", {transformOrigin: "50% 50%",y: "+=35vh",ease: Power1.easeInOut})
+    .to("#paddel-ball", {transformOrigin: "50% 100%",scaleX: 1.2,scaleY: 0.8,ease: Power1.easeInOut})
+    .to("#paddel-ball", {transformOrigin: "50% 50%",scaleX: 1,scaleY: 1,y: "-=25vh",ease: Power1.easeInOut})
+    .to("#paddel-ball", {transformOrigin: "50% 50%",y: "+=25vh"})
+    
+    
 gsap.timeline({
     scrollTrigger: {
         trigger: "#paddel-scene",
-        start: "top top",
-        end: "+=" + (frame_count2 * ww/5),
-        pin: true,
         scrub: 1,
+        pin:true,
+        end: "+=" + (wh),
+        start: "top top",
     }})
-    .to("#viewer-racquet",{duration: 0.15, ease: "steps(" + frame_count2 + ")", backgroundPosition: "0 "+ (-racquet_h*frame_count2)}, 0)
-    .from("#paddel-text",{opacity:0, y: "-5vw"}, 0)
-    .to("#viewer-ball",{ease: "steps(" + frame_count2 + ")", backgroundPosition: "0 "+ (-ball_h*frame_count2)}, 0)
-    .to("#viewer-ball",{ duration:1,x:"100vw"}, 0)
+    .from("#paddel_1, #paddel_2", {duration:0.2,scale: 0, transformOrigin: "0% 0%"},0)
+    .from("#paddel_3", {duration:0.2,scale: 0, transformOrigin: "35% 0%"},0.2)
+    .from("#paddel_4", {duration:0.2,scale: 0, transformOrigin: "20% 0%"},0.4)
+    .from("#paddel_5", {duration:0.2,scale: 0, transformOrigin: "20% 0%"},0.6)
+    .to("#paddel-rect",{duration:0.5,ease: "steps(10)", x:"+=64%"}, 0.4)
+    .add(paddel_ball, 0)
+    .to({}, {duration: 2})
 
 gsap.timeline({
     scrollTrigger: {
         trigger: "#book-scene",
-        start: "top top",
-        end: "+=" + (frame_count3 * ww/20),
-        pin: true,
         scrub: 1,
-    }})
-    .to("#viewer-book",{ease: "steps(" + frame_count3 + ")", backgroundPosition: "0 "+ (-book_h*frame_count3)}, 0)
-
-// ===== SKILLS =====
-
-gsap.timeline({
-    scrollTrigger: {
-        trigger: "#pc-scene",
+        pin:true,
+        end: "+=" + (2*wh),
         start: "top top",
-        end: "bottom center",
-        pin: true,
-        scrub: 1,
     }})
-    .to("#viewer-pc",{ease: "steps(" + frame_count4 + ")", backgroundPosition: "0 "+ (-pc_h*frame_count4)}, 0)
+    .from("#book_1", {duration: 0.1, autoAlpha: 0}, 0)
+    .from("#book_1", {duration: 0.1, scale: 0.8, transformOrigin: "50% 100%", ease: "power1.in"}, 0)
+    .to("#book_1", {duration: 1, x: "-=400%"},0.1)
+    .to("#book_1", {rotate: -30, duration: 0.1, transformOrigin: "0% 100%"}, 0.3)
+    .to("#book_1", {rotate: -70, duration: 0.1, transformOrigin: "0% 100%"}, 0.7)
+    .to("#book_1", {rotate: -90, duration: 0.1, transformOrigin: "0% 100%"}, 0.8)
+    .to("#book_1", {duration: 0.3, opacity: 0}, 0.9)
+    .from("#book_2", {duration: 0.1, autoAlpha: 0}, 0.25)
+    .from("#book_2", {duration: 0.1, scale: 0.8, transformOrigin: "50% 100%", ease: "power1.in"}, 0.25)
+    .to("#book_2", {duration: 1, x: "-=250%"},0.31)
+    .to("#book_2", {rotate: -30, duration: 0.1, transformOrigin: "0% 100%"}, 0.5)
+    .to("#book_2", {rotate: -43, duration: 0.1, transformOrigin: "0% 100%"}, 0.7)
+    .to("#book_2", {rotate: -90, duration: 0.1, transformOrigin: "0% 100%"}, 0.9)
+    .to("#book_2", {duration: 0.3, opacity: 0}, 1.1)
+    .from("#book_3", {duration: 0.1, autoAlpha: 0},0.5)
+    .from("#book_3", {duration: 0.1, scale: 0.8, transformOrigin: "50% 100%", ease: "power1.in"}, 0.5)
+    .to("#book_3", {duration: 1.4, x: "-=300%"},0.55)
+    .to("#book_3", {rotate: -32, duration: 0.1, transformOrigin: "0% 100%"},0.6)
+    .to("#book_3", {rotate: -34, duration: 0.1, transformOrigin: "0% 100%"},0.7)
+    .to("#book_3", {rotate: -48, duration: 0.1, transformOrigin: "0% 100%"}, 0.9)
+    .to("#book_3", {rotate: -90, duration: 0.1, transformOrigin: "0% 100%"}, 1.2)
+    .to("#book_3", {duration: 0.3, opacity: 0}, 1.35)
+    .from("#book_4", {duration: 0.1, autoAlpha: 0}, 0.8)
+    .from("#book_4", {duration: 0.1, scale: 0.8, transformOrigin: "50% 100%", ease: "power1.in"}, 0.8)
+    .to("#book_4", {duration: 1.6, x: "-=170%"},0.9)
+    .to("#book_4", {rotate: -40, duration: 0.1, transformOrigin: "0% 100%"}, 0.9)
+    .to("#book_4", {rotate: -56, duration: 0.1, transformOrigin: "0% 100%"}, 1.2)
+    .to("#book_4", {rotate: -90, duration: 0.1, transformOrigin: "0% 100%"}, 1.5)
+    .to("#book_4", {duration: 0.3, opacity: 0}, 1.6)
 
 gsap.timeline({
     scrollTrigger: {
