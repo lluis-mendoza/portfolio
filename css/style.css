@@ -534,7 +534,6 @@ header{
     margin: 20px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.082);
-    border-radius: 10px;
     text-align: center;
   }
   .icon p{
@@ -606,7 +605,6 @@ header{
   left: 40%;
   height: 80%;
   width: auto;
-  border-radius: 10px;
   transform: translate(-50%, -50%);
 }
 .project-wrapper{
@@ -618,7 +616,6 @@ header{
 .project-description{
   width: 30vw;
   height: auto;
-  border-radius: 10px;
   padding: 10px;
   background-color: var(--first-color);
   color:var(--background-color);
@@ -626,6 +623,14 @@ header{
 .project-title{
   text-align: right;
   padding: 10px;
+}
+#paperplane-scene svg{
+  position: absolute;
+  width: auto;
+  height: 20vh;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 @media only screen and (max-width: 768px) {
   :root{

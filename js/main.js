@@ -306,3 +306,17 @@ gsap.timeline({
     .to("#git",{duration: 0.2, backgroundPosition: "bottom right"},0.2)
     .to("#bash",{duration: 0.2, backgroundPosition: "bottom right"})
     .to("#mongo",{duration: 0.2, backgroundPosition: "bottom right"})
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: "#paperplane-scene",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+    }})
+    .to({}, {duration: 2})
+    .to("#paperplane_1",{ duration:1, skewY: -10, skewX: -10, transformOrigin:"100% 0%"})
+    .from("#paperplane_2",{ duration:1,  scaleY: 0,  transformOrigin:"75% 50%"})
+    .from("#paperplane_3, #paperplane_4",{ duration:1,  scaleY: 0,  transformOrigin:"25% 0%"})
+    //.to("#paperplane_3",{ duration:1,  scaleX: 0.85, skewX: 0, skewY: -10,transformOrigin:"100% 0%"}, "split")
+
