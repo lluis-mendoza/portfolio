@@ -2,11 +2,11 @@
 
 @font-face{
     font-family: Brands;
-    src: url('../../portfolio/fonts/brands.eot'); /* IE9 Compat Modes */
-    src: url('../../portfolio/fonts/brands.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../../portfolio/fonts/brands.woff') format('woff'), /* Modern Browsers */
-         url('../../portfolio/fonts/brands.ttf')  format('truetype'), /* Safari, Android, iOS */
-         url('../../portfolio/fonts/brands.svg#svgFontName') format('svg'); /* Legacy iOS */
+    src: url('../fonts/Brands.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Brands.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/Brands.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/Brands.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/Brands.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 :root{
