@@ -56,10 +56,8 @@ gsap.to(".scroll", {
 });
 
 var lineMac = document.querySelector('#hello-macintosh');
-var lineMacLength = lineMac.getTotalLength();
-lineMac.style.strokeDasharray = lineMacLength + ' ' + lineMacLength;
-lineMac.style.strokeDashoffset = lineMacLength;
-lineMac.getBoundingClientRect();
+lineMac.style.strokeDasharray = 166 + ' ' + 166;
+lineMac.style.strokeDashoffset = 166;
 
 gsap.timeline({defaults: {duration: 1},
     defaults:{
@@ -69,8 +67,7 @@ gsap.timeline({defaults: {duration: 1},
         trigger: "#hello-scene",
         scrub: 1,
         end: "+=" + (wh*2),
-        pin: true,
-        start: "top top",
+        start: "top center",
     }})
     .from("#macintosh_1", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
     .from("#macintosh_2", {opacity: 0, scaleY: 0.5, transformOrigin: "50% 0%"})
@@ -79,10 +76,15 @@ gsap.timeline({defaults: {duration: 1},
     .from("#macintosh_5", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
     .from("#macintosh_6", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
     .from("#macintosh_7", {opacity: 0, scale: 0.8, transformOrigin: "50% 50%"})
-    .to("#hello-macintosh", {strokeDashoffset: 1})
+    .to("#hello-macintosh", {strokeDashoffset: 0})
     .from("#hello-scene-txt", {opacity: 0, y: "+=10px"})
-    .to({}, {duration: 2})
-
+    //.to({}, {duration: 2})
+ScrollTrigger.create({
+    trigger: "#hello-scene",
+    start: "top top",
+    end: "+=" + (wh*2),
+    pin:true
+    });
 gsap.timeline({
     defaults:{
         ease: Power4.easeInOut
@@ -104,12 +106,10 @@ gsap.timeline({
 
     
 var line = document.querySelector('#tml-line');
-var lineLength = line.getTotalLength();
-line.style.strokeDasharray = lineLength + ' ' + lineLength;
-line.style.strokeDashoffset = lineLength;
-line.getBoundingClientRect();
-    
-var tml = gsap.timeline({
+line.style.strokeDasharray = 663 + ' ' + 663;
+line.style.strokeDashoffset = 663;
+
+var tml_ball = gsap.timeline({
     defaults: {
         duration: 0.05, 
         autoAlpha: 1, 
@@ -122,6 +122,20 @@ var tml = gsap.timeline({
     .to("#tml-ball3", {}, 0.3)
     .to("#tml-ball4", {}, 0.4)
     .to("#tml-ball5", {}, 0.5)
+
+var tml_box = gsap.timeline({
+    defaults: {
+        duration: 0.05, 
+        opacity: 0, 
+        scale: 0.8, 
+        transformOrigin: 'center', 
+        ease: "elastic(2.5, 1)"
+    }})
+    .from("#tml-box-1, #tml-icon-1", {}, 0.1) 
+    .from("#tml-box-2, #tml-icon-2", {}, 0.2)
+    .from("#tml-box-3, #tml-icon-3", {}, 0.3)
+    .from("#tml-box-4, #tml-icon-4", {}, 0.4)
+    .from("#tml-box-5, #tml-icon-5", {}, 0.5)
 //gsap.set("#tml-dot", {xPercent: -100, yPercent: -50})
 
 gsap.timeline({defaults: {duration: 1},
@@ -138,7 +152,8 @@ gsap.timeline({defaults: {duration: 1},
     .to("#tml-dot", {motionPath: {path: "#tml-line", align:"#tml-line",
     alignOrigin: [0.5, 0.5]}}, 0)
     //.from("#logo-fib", {ease: "elastic.out(1, 0.3)", height: 0, width: 0})
-    .add(tml, 0);
+    .add(tml_box, 0)
+    .add(tml_ball, 0);
 
 var horse_animation = gsap.timeline({
     defaults:{

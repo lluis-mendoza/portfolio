@@ -21,6 +21,7 @@
     --header-font-size: min(5vw, 2.5vh);
     --big-font-size: min(10vw, 10vh);
     --title-font-size: min(7vw, 7vh);
+    --h2-font-size: 2rem;
 
 
     --header-height: 7vh;
@@ -30,6 +31,12 @@
     --face-x: 60vw;
     --face-y: 20vh;
     
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+    --mb-5: 2.5rem;
+    --mb-6: 3rem;
 }
 
 *{
@@ -74,6 +81,25 @@ section{
   font-size: var(--title-font-size);
   margin: 0 0 10vh 10vh;
 }
+.section-title{
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+}
+.section-title::after{
+  position: absolute;
+  content: "";
+  width: 64px;
+  height: 0.18rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 3rem;
+  background-color: var(--first-color);
+}
 /* ===== NAV BAR ===== */
 
 header{
@@ -112,6 +138,7 @@ header{
 .nav-link:hover{
   color: #482ff7;
 }
+
 
 .nav-logo {
   font-size: var(--header-font-size);
@@ -361,7 +388,8 @@ header{
   transform: translate(-50%, -50%);
 }
 #hello-scene-txt p{
-  font-size: 7vh;
+  font-size: 4vh;
+  line-height: 1.8;
 }
 .skyline{
     position: absolute;
@@ -381,7 +409,7 @@ header{
   transform: translate(-50%, -50%);
 }
 #barcelona-scene-txt p{
-  font-size: 6vh;
+  font-size: 4vh;
 }
 #studies {
   height: 200vh;
@@ -441,19 +469,59 @@ header{
     stroke: black;
     stroke-width: 2px;
   }
-  .tml-text {
-    opacity: 0;
-    fill: black;
-    font-size: 2rem; 
-  }
+.tml-title{
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: rgba(244, 71, 77, 0.9);
+}
+.tml-text{
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgba(244, 71, 77, 0.75);
+}
+.tml-box{
+  position: absolute;
+  width: 30vw;
+  height: auto;
+  color: rgb(243, 243, 243);
+  transform: translate(0, -50%);
+  text-align: center;
+}
+.tml-box-left{
+  left: 15vw;
+}
+.tml-box-right{
+  left: 55vw;
+}
+#tml-box-1{
+  top: 23%;
+}
 
+#tml-box-2{
+  top: 41%;
+}
+
+#tml-box-3{
+  top: 59%;
+}
+
+#tml-box-4{
+  top: 77%;
+}
+
+#tml-box-5{
+  top: 95%;
+}
 .skill{
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     justify-content: center;
   }
   .skill h2{
     text-align: center;
+    font-size: var(--normal-font-size);
   }
   .icon-wrapper{
    margin: 30px 50px;
@@ -466,7 +534,7 @@ header{
     margin: 20px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.082);
-    border-radius: 10%;
+    border-radius: 10px;
     text-align: center;
   }
   .icon p{
@@ -484,7 +552,7 @@ header{
     text-rendering: auto;
     line-height: 1;
     font-family: Brands;
-    font-size: min(30vw, 200px);
+    font-size: min(30vw, 150px);
     padding-bottom: 20px;
     color: transparent;
     transition: background-position .5s ease;
@@ -527,6 +595,38 @@ header{
   #mongo{
     background-image: linear-gradient(135deg, var(--first-color) 50%, #58aa50 50%);
   }
+.project-content{
+  position: relative;
+  height: 60vh;
+  width: 100vw;
+}
+.project-image{
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  height: 80%;
+  width: auto;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+.project-wrapper{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translateY(-50%);
+}
+.project-description{
+  width: 30vw;
+  height: auto;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--first-color);
+  color:var(--background-color);
+}
+.project-title{
+  text-align: right;
+  padding: 10px;
+}
 @media only screen and (max-width: 768px) {
   :root{
      
