@@ -7,9 +7,9 @@ let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 window.addEventListener('resize', function () { 
-  if (document.documentElement.clientWidth != ww){
+  /*if (document.documentElement.clientWidth != ww){
     window.location.reload(); 
-  }
+  }*/
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `$vh}px`);
 });
@@ -97,10 +97,10 @@ gsap.timeline({
         scrub: 1
     }})
     .from("#skyline-rect",{duration: 0.2,scaleX: 0.054,transformOrigin: "0% 50%"}, 0)
-    .to("#skyline1",{duration: 0.1, y: "0"}, 0.15)
-    .to("#skyline2",{duration: 0.2, y: "0"}, 0.15)
-    .to("#skyline3",{duration: 0.15, y: "0"}, 0.3)
-    .to("#skyline4",{duration: 0.2, y: "0"}, 0.35)
+    .to("#skyline_1",{duration: 0.1, y: "0"}, 0.15)
+    .to("#skyline_2",{duration: 0.2, y: "0"}, 0.15)
+    .to("#skyline_3",{duration: 0.15, y: "0"}, 0.3)
+    .to("#skyline_4",{duration: 0.2, y: "0"}, 0.35)
     .from("#barcelona-scene-txt", {opacity: 0, y: "+=10px"})
     .to({}, {duration: 2})
 
@@ -309,9 +309,9 @@ gsap.timeline({
 
 gsap.timeline({
     scrollTrigger: {
-        trigger: "#paperplane-scene",
-        start: "top top",
-        end: "bottom bottom",
+        trigger: "#paperplane",
+        start: "top bottom",
+        end: "center center",
         scrub: 1,
     }})
     .to({}, {duration: 2})
