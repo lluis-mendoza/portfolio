@@ -320,3 +320,27 @@ gsap.timeline({
     .from("#paperplane_3, #paperplane_4",{ duration:1,  scaleY: 0,  transformOrigin:"25% 0%"})
     //.to("#paperplane_3",{ duration:1,  scaleX: 0.85, skewX: 0, skewY: -10,transformOrigin:"100% 0%"}, "split")
 
+const navLinks = document.getElementsByClassName('nav-link');
+
+const panels = gsap.utils.toArray(".section");
+
+panels.forEach((panel, i) => {
+    ScrollTrigger.create({
+    trigger: panel,
+    start:"top center",
+    end:"bottom center",
+    onEnter: () => {
+        if (i > 0){
+            console.log(navLinks);
+            navLinks[i-1].classList.add("nav-link-active");
+            if(i > 1) navLinks[i-2].classList.remove("nav-link-active");
+        }
+    },
+    onEnterBack: () => {
+        if (i > 0){
+            navLinks[i-1].classList.add("nav-link-active");
+        }
+        if (i < 4) navLinks[i].classList.remove("nav-link-active");
+    },
+    })
+});

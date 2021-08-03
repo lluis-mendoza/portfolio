@@ -23,7 +23,6 @@
     --title-font-size: min(7vw, 7vh);
     --h2-font-size: 2rem;
 
-
     --header-height: 7vh;
     --z-navbar: 100;
 
@@ -73,16 +72,38 @@ li{
 a{
   text-decoration: none;
 }
+.p-link{
+  position: relative;
+  color: #3400bb;
+}
+.p-link::after{
+  position: absolute;
+  content: "";
+  width: 95%;
+  height: 5%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 100%;
+  background-color: #3400bb;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+.p-link:hover::after{
+  width: 100%;
+  top: 103%;
+  height: 7%;
+}
 section{
   position: relative;
   margin-bottom: 10vh;
   scroll-snap-margin-top:var(--header-height);
   scroll-margin-top:var(--header-height);
 }
-.title{
+/*.title{
   font-size: var(--title-font-size);
   margin: 0 0 10vh 10vh;
-}
+}*/
 .section-title{
   position: relative;
   font-size: var(--h2-font-size);
@@ -135,12 +156,29 @@ header{
   font-size: var(--header-font-size);
   font-weight: 400;
   color: #475569;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
 }
 
 .nav-link:hover{
   color: #482ff7;
 }
-
+.nav-link-active{
+  position: relative;
+}
+.nav-link-active::after{
+  position: absolute;
+  content: "";
+  width: 90%;
+  height: 5%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 100%;
+  background-color: #475569;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
 
 .nav-logo {
   font-size: var(--header-font-size);
@@ -385,7 +423,7 @@ header{
   text-align: center;
 }
 .scene-txt p{
-  font-size: min(4vh, 3vw);
+  font-size: min(4vh, 4vw);
   line-height: 1.8;
 }
 #macintosh{
@@ -637,6 +675,7 @@ header{
 #email-link{
   display: inline;
   text-align: center;
+  font-size: var(--title-font-size);
 }
 @media only screen and (max-width: 768px) {
   :root{
@@ -654,8 +693,7 @@ header{
     border-radius: 10px;
     text-align: center;
     transition: 0.3s;
-    box-shadow:
-        0 10px 27px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
   }
   .nav-menu.active {
       left: 0;
