@@ -192,7 +192,7 @@ gsap.timeline({
         trigger: "#chess-scene",
         scrub: 1,
         pin:true,
-        end: "+=" + (wh*2),
+        end: "+=" + (wh),
         start: "top top",
     }})
     .add(horse_animation, 0)
