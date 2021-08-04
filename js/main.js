@@ -331,7 +331,6 @@ panels.forEach((panel, i) => {
     end:"bottom center",
     onEnter: () => {
         if (i > 0){
-            console.log(navLinks);
             navLinks[i-1].classList.add("nav-link-active");
             if(i > 1) navLinks[i-2].classList.remove("nav-link-active");
         }
