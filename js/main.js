@@ -43,13 +43,18 @@ window.onload = function(){
     setAnimations();
 }
 function setAnimations(){
-    var canvas = document.getElementById('face-canvas');
+    /*var canvas = document.getElementById('face-canvas');
     var ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var w = canvas.width;
     var h = canvas.height;
+    
+    var face_image = document.getElementById("face-image");
 
+    var face_height = parseInt(window.getComputedStyle(face_image).getPropertyValue('height'), 10);
+    var face_x = parseInt(window.getComputedStyle(face_image).getPropertyValue('left'),10);
+    var face_y = parseInt(window.getComputedStyle(face_image).getPropertyValue('top'),10);
     var circle = function(color, r) {
         ctx.fillStyle = color;
         ctx.beginPath();
@@ -74,21 +79,44 @@ function setAnimations(){
     }
 
     var i = 0;
+    var offset = 20;
     var redraw = function() {
         ctx.save();
         ctx.clearRect(0, 0, w, h);
         // set origin to center
-        ctx.translate(w / 2, h / 2);
 
-        // draw sun
-        triangle('yellow', 30);
+        console.log(face_x);
+        ctx.translate(face_x + face_height/2, face_y + face_height / 2);
 
-        // rotate + move along x
-        ctx.rotate(i / 100);
-        ctx.translate(100, 0);
+        ctx.save();
+        ctx.rotate(4*i / face_height);
+        ctx.translate(2*face_height/3, 0);
+        triangle('#F2B705', 70);
+        ctx.restore();
 
-        // draw planet
-        circle('green', 10);
+        ctx.save();
+        ctx.rotate(4*i / face_height+offset);
+        ctx.translate(2*face_height/3, 0);
+        circle('#33A650', 60);
+        ctx.restore();
+
+        ctx.save();
+        ctx.rotate(4*i / face_height+2*offset);
+        ctx.translate(2*face_height/3, 0);
+        rectangle('#448FF2', 50,50);
+        ctx.restore();
+
+        ctx.save();
+        ctx.rotate(4*i / face_height+3*offset);
+        ctx.translate(2*face_height/3, 0);
+        rectangle('#448FF2', 50,50);
+        ctx.restore();
+
+        ctx.save();
+        ctx.rotate(4*i / face_height+4*offset);
+        ctx.translate(2*face_height/3, 0);
+        rectangle('#F2A007', 50,50);
+        ctx.restore();
 
         ctx.restore();
 
@@ -97,8 +125,8 @@ function setAnimations(){
         window.requestAnimationFrame(redraw);
     };
 
-    //window.requestAnimationFrame(redraw);
-
+    window.requestAnimationFrame(redraw);
+    	*/
     gsap.from(".name-wrapper",{
         opacity:0,
         x: "-30%",
@@ -114,7 +142,15 @@ function setAnimations(){
             toggleActions: "restart none none reverse",
         }
     });
-    
+    gsap.from(".navbar",{
+        duration: 0.1,
+        y: "-=100%",
+        opacity: 0,
+        scrollTrigger:{
+            trigger: "#about",
+            toggleActions: "restart none none reverse",
+        }
+    })
     var lineMac = document.querySelector('#hello-macintosh');
     lineMac.style.strokeDasharray = 166 + ' ' + 166;
     lineMac.style.strokeDashoffset = 166;

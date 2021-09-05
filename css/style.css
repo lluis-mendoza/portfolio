@@ -137,7 +137,7 @@ a{
 }*/
 /* ===== NAV BAR ===== */
 
-header{
+/*header{
   width: 100%;
   position: fixed;
   top: 0;
@@ -146,9 +146,16 @@ header{
   z-index: 100;
   background-color: #fff;
   box-shadow: 0 4px 4px rgba(145,160,175,.15);
-}
+}*/
 .navbar{
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: var(--normal-font-size);
+  z-index: 100;
+  background-color: #fff;
+  box-shadow: 0 4px 4px rgba(145,160,175,.15);
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
@@ -235,12 +242,11 @@ header{
 .name-subtitle{
   font-size: min(5vw, 5vh);;
 }
-.face-div{
+
+#face-image{
   position: absolute;
   left: var(--face-x);
   top: var(--face-y);
-}
-.face-image{
   background-color: #007DB6;
   border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
   height: var(--face-height);
