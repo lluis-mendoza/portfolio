@@ -142,7 +142,7 @@ function setAnimations(){
             toggleActions: "restart none none reverse",
         }
     });
-    gsap.from(".navbar",{
+    /*gsap.from(".navbar",{
         duration: 0.1,
         y: "-=100%",
         opacity: 0,
@@ -150,7 +150,7 @@ function setAnimations(){
             trigger: "#about",
             toggleActions: "restart none none reverse",
         }
-    })
+    })*/
     var lineMac = document.querySelector('#hello-macintosh');
     lineMac.style.strokeDasharray = 166 + ' ' + 166;
     lineMac.style.strokeDashoffset = 166;
