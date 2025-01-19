@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Onest Variable";
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+nav {
+  animation: nav-shadown 1s linear both;
+  animation-timeline: scroll();
+  animation-range: 0 100px;
+}
+
+nav {
+  @apply bg-white/50;
+}
+
+@keyframes nav-shadown {
+  0% {
+    @apply bg-white/0;
+  }
+  to {
+    @apply shadow-lg ring-1 backdrop-blur ring-white/10;
+  }
+}
