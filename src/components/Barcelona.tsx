@@ -11,15 +11,16 @@ const Hello = () => {
   useGSAP(
     () => {
         gsap.timeline({
-        defaults:{
-            ease: "power4.inOut"
-        },
-        scrollTrigger: {
-            trigger: container.current,
-            start: "center center",
-            end: "+=140%",
-            pin: true,
-            scrub: true
+          duration: 0.5,
+          defaults:{
+              ease: "power4.inOut"
+          },
+          scrollTrigger: {
+              trigger: container.current,
+              start: "center center",
+              end: "+=100%",
+              pin: true,
+              scrub: true
         }})
         .from("#skyline-rect",{duration: 0.2, scaleX: 0.054, transformOrigin: "0% 50%"}, 0)
         .from("#skyline_1",{duration: 0.1, y: "100%", opacity: 0 }, 0.15)
